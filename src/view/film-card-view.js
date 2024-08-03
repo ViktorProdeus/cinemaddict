@@ -1,0 +1,30 @@
+import { createElement } from '../render.js';
+import createFilmCardControlsTemplate from './film-card-controls-template.js';
+import createFilmCardInfoTemplate from './film-card-info-template.js';
+
+function createFilmCardViewTemplate() {
+  return `
+    <article class="film-card">
+      ${createFilmCardInfoTemplate()}
+      ${createFilmCardControlsTemplate()}
+    </article>
+  `;
+}
+
+export default class FilmCardView {
+  getTemplate() {
+    return createFilmCardViewTemplate();
+  }
+
+  getElement() {
+    if (!this.element) {
+      this.element = createElement(this.getTemplate());
+    }
+
+    return this.element;
+  }
+
+  removeElement() {
+    this.element = null;
+  }
+}
